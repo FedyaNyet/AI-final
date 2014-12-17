@@ -24,7 +24,7 @@ To have some more fun with the solver, `cd` into the directory containing this p
     	[wal," ",wal," ",wal,wal,wal," ",wal,wal," ",wal],
     	[wal," ",wal," ",wal," "," "," "," ",wal," ",wal],
     	[wal," ",wal," "," "," ",wal,wal," ",wal," ",wal],
-    	[wal,wal,wal," ",wal," "," ",wal," ",wal," ",wal]
+    	[wal,wal,wal," ",wal," "," ",wal," ",wal," ",wal],
     	[wal,wal,wal,wal,wal,wal,wal,wal,wal,wal,ext,wal]
     ]
     
@@ -67,6 +67,8 @@ To solve the puzzle do:
     game.solve()
 
 
-If at any point you want to see the game's state, you can access the attributes such as _exploreHeap by:
+If at any point you want to see the game's state, you can access the game's attributes such as `_exploreHeap` by printing them out to the screen. _Note that tile's are simply represented by their coordinates_
 
     print game._exploreHeap
+
+To explore a Tile's runtime attributes, you can access them via the game's `_tiles` in the following manner:
