@@ -3,9 +3,9 @@ AI-final
 
 This is a simple maze solving game who's sole purpose is to find the optimal path from a start to finish.
 
-To get started the quick and dirty way, simply run `$python Engine.py` to solve one of the mazes embded in the Engine.py file.
+To get started the quick and dirty way, simply run `$ python Engine.py` to solve one of the mazes embded in the Engine.py file.
 
-To have some more fun with the solver, run a python shell (`$python`) and paste the following code into the CLI.
+To have some more fun with the solver, run python (`$ python`) and paste the following into the interpreter.
 
     from Maze import *
     
