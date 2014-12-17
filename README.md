@@ -5,7 +5,7 @@ This is a simple maze solving game who's sole purpose is to find the optimal pat
 
 To get started the quick and dirty way, simply run `$ python Engine.py` to solve one of the mazes embded in the Engine.py file.
 
-To have some more fun with the solver, run python (`$ python`) and paste the following into the interpreter.
+To have some more fun with the solver, `cd` into the directory containing this projects and run python `$ python`. Then paste the following into the interpreter.
 
     from Maze import *
     
