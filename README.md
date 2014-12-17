@@ -71,4 +71,6 @@ If at any point you want to see the game's state, you can access the game's attr
 
     print game._exploreHeap
 
-To explore a Tile's runtime attributes, you can access them via the game's `_tiles` in the following manner:
+To explore a Tile's runtime attributes such as it's `_northTile`, you can access the tile at `(2,10)` via the game's `_tiles` attribute in the following manner:
+
+    game._tiles[(2,10)]._northTile
