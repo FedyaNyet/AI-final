@@ -56,7 +56,7 @@ class Board(object):
 	_exit = None  # the _exit tile who's identity will determine if the step funcion's current node is the solution node.
 
 	# a sorted queue that will contain the next to-be-explored tile at the head of the queue
-	_exploreHeap = [] # stores objects in the form of (priority, tile)
+	_exploreHeap = [] # stores objects in the form of: [(priority, someTile)]
 
 	# this is a map for storing all the tiles, with the tiles as the values and keys as their coordinates on the board.
 	_tiles = {} # contains key values pairs in the form of: {(5,2):someTile}
@@ -67,6 +67,12 @@ class Board(object):
 		builds a graph to connect all the tiles. It then adds the _entrance tile to _exploreHeap for solving.
 		"""
 		super(Board, self).__init__(*args, **kwargs)
+		self._isSolved = False
+		self._entrance = None
+		self._exit = None
+		self._exploreHeap = []
+		self._tiles = {}
+		
 		for row,rowArray in enumerate(maze):
 			for col,cTile in enumerate(rowArray):
 				if WALL in cTile: continue
