@@ -1,5 +1,6 @@
 from heapq import *
 
+# Just some globals for the maze input/output.
 WALL = "#"
 ENTRANCE = "S"
 EXIT = "F"
@@ -10,8 +11,9 @@ NEXT = "0"
 SOLUTION = "o"
 
 class Tile(object):
-	"""docstring for Tile"""
-
+	"""
+	Tile is a helper class that makes up the nodes of the graph that Board uses to solve the maze.
+	"""
 	#tile's coordintes
 	_coordinates = (None, None)
 
@@ -25,6 +27,7 @@ class Tile(object):
 	_westTile = None
 	_links = [_northTile, _eastTile, _southTile, _westTile]
 
+	# access properties for Row, and Col.
 	@property
 	def row(self):
 		return self._coordinates[0]
@@ -34,28 +37,29 @@ class Tile(object):
 		return self._coordinates[1]
 
 	def __init__(self, coordinates):
+		"""Instantiate a Tile class with a touble for (Row,Col) where Row and Col are natural numbers."""
 		self._coordinates = coordinates
 		super(Tile, self).__init__()
 
 	def __repr__(self):
+		"""The string representation of the Tile is simply the coordinates it contains."""
 		return "(%d, %d)" % (self.row, self.col)
 	
 
 
 class Board(object):
 	"""
-	docstring for Board
 	A class used to solve mazes.
 	"""
-	_isSolved = False
-	_entrance = None
-	_exit = None
+	_isSolved = False  # flag that is set to True once the step function has found a path from _entrance to _exit.
+	_entrance = None  # the _entrance Tile that will serve as the root node for the graph Maze's graph.
+	_exit = None  # the _exit tile who's identity will determine if the step funcion's current node is the solution node.
 
 	# a sorted queue that will contain the next to-be-explored tile at the head of the queue
 	_exploreHeap = [] # stores objects in the form of (priority, tile)
 
-	# this is a map for storring all the tiles, with the tiles as the values and keys as their coorsindates on the board.
-	_tiles = {} # is built in the form of {(5,2):someTile}
+	# this is a map for storing all the tiles, with the tiles as the values and keys as their coordinates on the board.
+	_tiles = {} # contains key values pairs in the form of: {(5,2):someTile}
 
 	def __init__(self, maze, *args, **kwargs):
 		"""
@@ -76,7 +80,7 @@ class Board(object):
 		if not self._entrance or not self._exit:
 			exit("Unable to locate maze ENTRANCE or EXIT")
 
-		# Build the tile graph by itterate over all the tiles and settings each of their north,east,south,west tiles.
+		# Build the tile graph by itterate over all the tiles and settings each of their north,east,south,west tiles accordingly.
 		for row,col in self._tiles:
 			tile = self._tiles[(row,col)]
 			try:
@@ -96,12 +100,15 @@ class Board(object):
 			except:
 				pass
 
-		#start the exploration queue with the _entrance tile
+		# Add the _entrance node to the heap so that the step functions has something to start with.
 		heappush(self._exploreHeap, (self.getDistanceToExit(self._entrance), self._entrance))
 
 		
 	def getDistanceToExit(self, tile):
-		"""Returns the Manhattan distance for a given tile, to the board's _exit tile."""
+		"""
+		This is the Heuristic function that returns the 
+		Manhattan distance from a given tile to the board's _exit tile.
+		"""
 		return abs(tile.row - self._exit.row) + abs(tile.col - self._exit.col)
 
 
@@ -112,15 +119,21 @@ class Board(object):
 		the tiles directly to the north, east, south, and west of the current tile and inserts any unexplored
 		tiles into the _exploreHeap with the prioty of their Manhattan distance to the exit.
 		"""
+		# Grab the Tile with the best heuristic result (shortest manhattan distance to _exit)
 		tile = heappop(self._exploreHeap)[1]
 		if tile is self._exit:
 			self._isSolved = True
 			return
+		# Itterate of the 4 possible directions for the current tile
 		for nextTile in [tile._northTile, tile._eastTile, tile._southTile, tile._westTile]:
-			if not nextTile: continue # there's no tile in that direction!
-			if nextTile._path or nextTile is self._entrance: continue # it's been explored!
+			if not nextTile: continue  # there's no tile in that direction!
+			if nextTile._path: continue  # It's been (or will be) explored already
+			if nextTile is self._entrance: continue  # _entrance tile's path is always empty, so make sure it's not re-explored.
+			# Update the neighbording tile's paths. (This also indicates that the nextTile will be explored)
 			nextTile._path = tile._path + [tile]
+			# Insert the Tile into the sorted heap accoding to the getDistanceToExit heuristic
 			heappush(self._exploreHeap, (self.getDistanceToExit(nextTile), nextTile))
+		#at the end of each step, print the progress.
 		print self
 
 	def solve(self):
@@ -130,13 +143,16 @@ class Board(object):
 		print self
 
 	def isEnqueued(self, tile):
-		"""Returns true if the provided tile is in the exploreHeap, otherwise false."""
+		"""Returns true if the provided tile is in the exploreHeap, otherwise false. (Used by the __repr__ function.)"""
 		for i in range(len(self._exploreHeap)):
 			if self._exploreHeap[i][1] != tile: continue
 			return True
 		return False
 
 	def __repr__(self):
+		"""
+		The Board's toString method if you will.
+		"""
 		retString = "Legend: wall:`%s` start:`%s` end:`%s` path:`%s` explored:`%s` queued:`%s` next:`%s` solution:`%s` \n" %(WALL, ENTRANCE, EXIT, PATH, EXPLORED, QUEUED, NEXT, SOLUTION)
 		for row in range(0,12):
 			line = ""
@@ -162,4 +178,3 @@ class Board(object):
 				line += charToPrint
 			retString += line+"\n"
 		return retString
-

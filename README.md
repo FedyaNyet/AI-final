@@ -9,40 +9,39 @@ To have some more fun with the solver, `cd` into the directory containing this p
 
     from Maze import *
     
-    ent = ENTRANCE
-    ext = EXIT
-    wal = WALL
+    B  = ENTRANCE
+    X  = EXIT
+    O  = PATH
+    WAL  = WALL
     
     maze1 = [
-    	[wal,ent,wal,wal,wal,wal,wal,wal,wal,wal,wal,wal],
-    	[wal," ",wal," "," "," ",wal," "," "," "," ",wal],
-    	[wal," ",wal," ",wal,wal,wal," ",wal,wal," ",wal],
-    	[wal," "," "," "," "," ",wal," "," "," "," ",wal],
-    	[wal,wal,wal,wal,wal," ",wal," ",wal," ",wal,wal],
-    	[wal," "," "," "," "," ",wal," ",wal," ",wal,wal],
-    	[wal," ",wal," ",wal," ",wal," ",wal," "," ",wal],
-    	[wal," ",wal," ",wal,wal,wal," ",wal,wal," ",wal],
-    	[wal," ",wal," ",wal," "," "," "," ",wal," ",wal],
-    	[wal," ",wal," "," "," ",wal,wal," ",wal," ",wal],
-    	[wal,wal,wal," ",wal," "," ",wal," ",wal," ",wal],
-    	[wal,wal,wal,wal,wal,wal,wal,wal,wal,wal,ext,wal]
+        [WAL, B ,WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL],
+        [WAL, O ,WAL, O , O , O ,WAL, O , O , O , O ,WAL],
+        [WAL, O ,WAL, O ,WAL,WAL,WAL, O ,WAL,WAL, O ,WAL],
+        [WAL, O , O , O , O , O ,WAL, O , O , O , O ,WAL],
+        [WAL,WAL,WAL,WAL,WAL, O ,WAL, O ,WAL, O ,WAL,WAL],
+        [WAL, O , O , O , O , O ,WAL, O ,WAL, O ,WAL,WAL],
+        [WAL, O ,WAL, O ,WAL, O ,WAL, O ,WAL, O , O ,WAL],
+        [WAL, O ,WAL, O ,WAL,WAL,WAL, O ,WAL,WAL, O ,WAL],
+        [WAL, O ,WAL, O ,WAL, O , O , O , O ,WAL, O ,WAL],
+        [WAL, O ,WAL, O , O , O ,WAL,WAL, O ,WAL, O ,WAL],
+        [WAL,WAL,WAL, O ,WAL, O , O ,WAL, O ,WAL, O ,WAL],
+        [WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL, X ,WAL]
     ]
-    
     maze2 = [
-    	[wal,wal,wal,wal,wal,wal,wal,wal,wal,wal,ext,wal],
-    	[wal," "," "," "," "," ",wal," ",wal,wal," ",wal],
-    	[wal," ",wal," ",wal,wal,wal," ",wal," "," ",wal],
-    	[wal," ",wal," "," "," "," "," ",wal," ",wal,wal],
-    	[wal," ",wal," ",wal,wal,wal," ",wal," "," ",wal],
-    	[ent," ",wal," ",wal," "," "," ",wal,wal," ",wal],
-    	[wal,wal,wal," "," "," ",wal," "," "," "," ",wal],
-    	[wal," "," "," ",wal," ",wal,wal,wal,wal," ",wal],
-    	[wal," ",wal,wal,wal," ",wal," "," "," "," ",wal],
-    	[wal," ",wal," ",wal," ",wal," ",wal,wal,wal,wal],
-    	[wal," "," "," ",wal," ",wal," "," "," "," ",wal],
-    	[wal,wal,wal,wal,wal,wal,wal,wal,wal,wal,wal,wal]
+        [WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL, X ,WAL],
+        [WAL, O , O , O , O , O ,WAL, O ,WAL,WAL, O ,WAL],
+        [WAL, O ,WAL, O ,WAL,WAL,WAL, O ,WAL, O , O ,WAL],
+        [WAL, O ,WAL, O , O , O , O , O ,WAL, O ,WAL,WAL],
+        [WAL, O ,WAL, O ,WAL,WAL,WAL, O ,WAL, O , O ,WAL],
+        [ B , O ,WAL, O ,WAL, O , O , O ,WAL,WAL, O ,WAL],
+        [WAL,WAL,WAL, O , O , O ,WAL, O , O , O , O ,WAL],
+        [WAL, O , O , O ,WAL, O ,WAL,WAL,WAL,WAL, O ,WAL],
+        [WAL, O ,WAL,WAL,WAL, O ,WAL, O , O , O , O ,WAL],
+        [WAL, O ,WAL, O ,WAL, O ,WAL, O ,WAL,WAL,WAL,WAL],
+        [WAL, O , O , O ,WAL, O ,WAL, O , O , O , O ,WAL],
+        [WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL,WAL]
     ]
-
 
 Then instantiate the game with one of the mazes above.
 
