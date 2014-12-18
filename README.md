@@ -1,5 +1,6 @@
 AI-final
 ========
+_@author: Fyodor Wolf_
 
 This is a simple maze solving game written in python (tested on _Python 2.7.8_) who's sole purpose is to find the optimal path from a start to finish.
 
