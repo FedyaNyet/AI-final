@@ -37,7 +37,6 @@ maze2 = [
 if __name__ == '__main__':
 	import sys
 	args = sys.argv
-	print args
 	if len(args) < 2 or args[1] not in ["maze1", "maze2"] :
 		exit("please specify which maze to run. maze1 or maze2")
 	game = Board(globals()[args[1]])
