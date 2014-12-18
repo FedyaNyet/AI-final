@@ -1,9 +1,9 @@
 AI-final
 ========
 
-This is a simple maze solving game who's sole purpose is to find the optimal path from a start to finish.
+This is a simple maze solving game written in python (tested on _Python 2.7.8_) who's sole purpose is to find the optimal path from a start to finish.
 
-To get started the quick and dirty way, simply run `$ python Engine.py` to solve one of the mazes embded in the Engine.py file.
+To get started the quick and dirty way, simply run `$ python Engine.py maze1` or `$ python Engine.py maze2` to solve one of the mazes embeded in the Engine.py file.
 
 To have some more fun with the solver, `cd` into the directory containing this projects and run python `$ python`. Then paste the following into the interpreter.
 
